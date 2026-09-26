@@ -17,7 +17,7 @@ import threading
 import json
 import socket
 import urllib.request
-import urllib.error
+import urllib.errorerror
 import uuid
 import logging
 
@@ -51,7 +51,7 @@ from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 # ==============================================================================
 # CONFIGURATION & CONSTANTS
 # ==============================================================================
-TOKEN = os.environ.get("BOT_TOKEN", "8808949150:AAHAd4eOthJkLPLXGvErUM7xoLW0igOY0Fc")
+TOKEN = os.environ.get("BOT_TOKEN", "8808949150:AAFaflUtt_oQN4Gi4jl7_4sMZgUD4Y_pbk8")
 bot = telebot.TeleBot(TOKEN, parse_mode="HTML")
 
 CHANNEL_USERNAME = os.environ.get("CHANNEL_USERNAME", "@DARK67HACK")
@@ -265,7 +265,7 @@ def get_trading_control_keyboard(sid):
     )
     markup.add(
         InlineKeyboardButton(f"{to_bold('STATS')}", callback_data=f"stats:{sid}"),
-        InlineKeyboardButton(f"{to_bold(f'STOP {spinner}')}", callback_data=f"stop:{sid}")
+        InlineKeyboardButton(f"{to_bold('STOP')}", callback_data=f"stop:{sid}")
     )
     return markup
 
