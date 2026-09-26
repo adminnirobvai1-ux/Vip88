@@ -17,7 +17,7 @@ import threading
 import json
 import socket
 import urllib.request
-import urllib.errorerror
+import urllib.error
 import uuid
 import logging
 
@@ -330,7 +330,6 @@ def get_admin_dashboard_keyboard():
 # WORKER SELECTION & TASK DISPATCH SYSTEM
 # ==============================================================================
 def find_optimal_worker_node():
-    """Finds the best active worker node based on FREE status and lowest network latency."""
     all_terminals = firebase_sync_http("terminals", "GET") or {}
     now = time.time()
     candidates = []
@@ -363,7 +362,6 @@ def relay_action_to_worker(worker_id, action_payload):
 # ASYNC WORKER RESPONSE LISTENER & MESSAGE UPDATER
 # ==============================================================================
 def worker_events_listener():
-    """Listens for event responses from Workers (e.g. login results, wingo ready, win target reached)."""
     while True:
         try:
             events = firebase_sync_http("manager_events", "GET")
@@ -386,7 +384,6 @@ def worker_events_listener():
                                 f"Account: <code>{masked_phone}</code>\n\n"
                                 f"Click <b>START</b> below to configure and run trading parameters:"
                             )
-                            # Seamless in-place edit: replaces CONNECTING REMOTE WORKER ENGINE directly
                             target_msg_id = sess.get("last_dashboard_msg_id") or ev_data.get("anim_msg_id")
                             if target_msg_id:
                                 try:
@@ -408,7 +405,6 @@ def worker_events_listener():
                                 f"Reason: <i>{err_reason}</i>\n\n"
                                 f"Send /start to try again."
                             )
-                            # Seamless in-place edit: replaces CONNECTING message so no orphan progress bar remains
                             target_msg_id = sess.get("last_dashboard_msg_id") or ev_data.get("anim_msg_id")
                             if target_msg_id:
                                 try:
@@ -428,7 +424,6 @@ def worker_events_listener():
                                 f"Live Balance: <code>৳ {live_bal:.2f}</code>\n\n"
                                 f"Set your <b>TARGET</b> and <b>STEPS</b> below, then press <b>START</b>:"
                             )
-                            # Seamless in-place edit: transforms the preparing/login card into WINGO MARKET card
                             last_m = sess.get("last_dashboard_msg_id")
                             if last_m:
                                 try:
@@ -859,7 +854,6 @@ def handle_callbacks(call):
         sess = active_sessions[sid]
         sess["last_dashboard_msg_id"] = call.message.message_id
         bot.answer_callback_query(call.id, "Preparing WinGo 30S market...")
-        # Smooth in-place transition: update card to show preparing state
         try:
             bot.edit_message_text(
                 f"<b>{to_bold('PREPARING WINGO 30S MARKET')}</b>\n\n"
