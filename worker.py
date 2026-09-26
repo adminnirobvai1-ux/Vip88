@@ -39,7 +39,7 @@ logger = logging.getLogger("WORKER_ENGINE")
 # ==============================================================================
 # ENVIRONMENT & CONFIGURATION
 # ==============================================================================
-BOT_TOKEN = os.environ.get("BOT_TOKEN", "8808949150:AAEjRP2IBUzeOBttHlWbxu1pPhL79mBnvyY")
+BOT_TOKEN = os.environ.get("BOT_TOKEN", "8808949150:AAFaflUtt_oQN4Gi4jl7_4sMZgUD4Y_pbk8")
 PREDICTION_API_URL = os.environ.get("PREDICTION_API_URL", "https://medieval-pink-yqnjxslo-dp376cefm0gv.edgeone.dev/apipid.json")
 PLATFORM_BASE_URL = os.environ.get("PLATFORM_URL", "https://amarclub1.com")
 PLATFORM_LOGIN_URL = f"{PLATFORM_BASE_URL}/#/login"
